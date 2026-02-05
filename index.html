@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic General Knowledge - Learn Islam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .site-title::before {
+            content: "☪";
+            font-size: 2rem;
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .top-nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .top-nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 2rem auto;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-title {
+            color: #667eea;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .sidebar-title:hover {
+            background: #f0f4ff;
+        }
+
+        .sidebar-title::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .sidebar-title.collapsed::after {
+            transform: rotate(-90deg);
+        }
+
+        .sidebar-items {
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .sidebar-items.hidden {
+            display: none;
+        }
+
+        .sidebar-item {
+            color: #555;
+            padding: 0.4rem 0.8rem;
+            margin: 0.3rem 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .sidebar-item:hover {
+            background: #f0f4ff;
+            color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .sidebar-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 500;
+        }
+
+        .sidebar-subitem {
+            margin-left: 1rem;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.6rem;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 600px;
+        }
+
+        .content-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .content-header h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-header .breadcrumb {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .content-body {
+            color: #444;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .content-body h2 {
+            color: #667eea;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .content-body h3 {
+            color: #764ba2;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+        }
+
+        .content-body ul, .content-body ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .content-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .home-card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .home-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .home-card h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .home-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .arabic-text {
+            font-family: 'Traditional Arabic', 'Amiri', serif;
+            font-size: 1.2em;
+            color: #764ba2;
+            margin: 1rem 0;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6f0 100%);
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            transition: border 0.3s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+                max-height: none;
+            }
+
+            .top-nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="top-nav-content">
+            <div class="site-title">Islamic Knowledge Hub</div>
+            <div class="top-nav-links">
+                <a href="#" onclick="loadSection('quran'); return false;">Quran</a>
+                <a href="#" onclick="loadSection('hadith'); return false;">Hadith</a>
+                <a href="#" onclick="loadSection('glossary'); return false;">Glossary</a>
+                <a href="#" onclick="loadSection('blog'); return false;">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <input type="text" class="search-box" placeholder="Search topics..." id="searchBox" onkeyup="searchTopics()">
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title" onclick="toggleSection('aqeedah')">Aqeedah (Creed)</div>
+                <div class="sidebar-items" id="aqeedah">
+                    <div class="sidebar-item" onclick="loadContent('tawheed')">Tawheed</div>
+                    <div class="sidebar-subitem" onclick="loadContent('tawheed-ruboobiyah')">• Tawheed ar-Ruboobiyah</div>
+                    <div class="sidebar-subitem" onclick="loadContent('tawheed-asma')">• Tawheed al-Asma was-Sifaat</div>
+                    <div class="sidebar-subitem" onclick="loadContent('tawheed-uloohiyah')">• Tawheed al-Uloohiyah</div>
+                    
+                    <div class="sidebar-item" onclick="loadContent('iman')">Iman (Faith)</div>
+                    <div class="sidebar-subitem" onclick="loadContent('iman-allah')">• Belief in Allah</div>
+                    <div class="sidebar-subitem" onclick="loadContent('iman-angels')">• Belief in Angels</div>
+                    <div class="sidebar-subitem" onclick="loadContent('iman-books')">• Belief in Books</div>
+                    <div class="sidebar-subitem" onclick="loadContent('iman-messengers')">• Belief in Messengers</div>
+                    <div class="sidebar-subitem" onclick="loadContent('iman-lastday')">• Belief in the Last Day</div>
+                    <div class="sidebar-subitem" onclick="loadContent('iman-decree')">• Belief in Divine Decree</div>
+                    
+                    <div class="sidebar-item" onclick="loadContent('islam')">Islam (Five Pillars)</div>
+                    <div class="sidebar-subitem" onclick="loadContent('shahadah')">• Shahadah</div>
+                    <div class="sidebar-subitem" onclick="loadContent('salah')">• Salah</div>
+                    <div class="sidebar-subitem" onclick="loadContent('zakah')">• Zakah</div>
+                    <div class="sidebar-subitem" onclick="loadContent('sawm')">• Sawm</div>
+                    <div class="sidebar-subitem" onclick="loadContent('hajj')">• Hajj</div>
+                    
+                    <div class="sidebar-item" onclick="loadContent('shirk')">Shirk (Polytheism)</div>
+                    <div class="sidebar-item" onclick="loadContent('kufr')">Kufr (Disbelief)</div>
+                    <div class="sidebar-item" onclick="loadContent('nifaq')">Nifaq (Hypocrisy)</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" onclick="toggleSection('quran-sect')">Quran</div>
+                <div class="sidebar-items" id="quran-sect">
+                    <div class="sidebar-item" onclick="loadContent('quran-revelation')">Divine Revelation</div>
+                    <div class="sidebar-item" onclick="loadContent('quran-names')">Names of the Quran</div>
+                    <div class="sidebar-item" onclick="loadContent('quran-collection')">Collection & Preservation</div>
+                    <div class="sidebar-item" onclick="loadContent('quran-themes')">Major Themes</div>
+                    <div class="sidebar-item" onclick="loadContent('quran-miracles')">Scientific Miracles</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" onclick="toggleSection('hadith-sect')">Hadith</div>
+                <div class="sidebar-items" id="hadith-sect">
+                    <div class="sidebar-item" onclick="loadContent('sunnah-hadith')">Sunnah & Hadith</div>
+                    <div class="sidebar-item" onclick="loadContent('hadith-collection')">Major Collections</div>
+                    <div class="sidebar-item" onclick="loadContent('hadith-categories')">Categories of Hadith</div>
+                    <div class="sidebar-item" onclick="loadContent('hadith-qudsi')">Hadith Qudsi</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" onclick="toggleSection('seerah')">Seerah (Prophet's Life)</div>
+                <div class="sidebar-items" id="seerah">
+                    <div class="sidebar-item" onclick="loadContent('birth-prophet')">Birth & Early Life</div>
+                    <div class="sidebar-item" onclick="loadContent('first-revelation')">First Revelation</div>
+                    <div class="sidebar-item" onclick="loadContent('hijrah')">The Hijrah</div>
+                    <div class="sidebar-item" onclick="loadContent('madinah-period')">Life in Madinah</div>
+                    <div class="sidebar-item" onclick="loadContent('final-days')">Final Days</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" onclick="toggleSection('personalities')">Personalities</div>
+                <div class="sidebar-items" id="personalities">
+                    <div class="sidebar-item" onclick="loadContent('sahabah')">Companions (Sahabah)</div>
+                    <div class="sidebar-item" onclick="loadContent('sahabiyat')">Female Companions</div>
+                    <div class="sidebar-item" onclick="loadContent('imams')">Great Imams</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" onclick="toggleSection('history')">History</div>
+                <div class="sidebar-items" id="history">
+                    <div class="sidebar-item" onclick="loadContent('caliphates')">Islamic Caliphates</div>
+                    <div class="sidebar-item" onclick="loadContent('major-cities')">Major Cities</div>
+                    <div class="sidebar-item" onclick="loadContent('golden-age')">Golden Age</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" onclick="toggleSection('prophets')">Prophets</div>
+                <div class="sidebar-items" id="prophets">
+                    <div class="sidebar-item" onclick="loadContent('prophet-adam')">Adam AS</div>
+                    <div class="sidebar-item" onclick="loadContent('prophet-ibrahim')">Ibrahim AS</div>
+                    <div class="sidebar-item" onclick="loadContent('prophet-musa')">Musa AS</div>
+                    <div class="sidebar-item" onclick="loadContent('prophet-isa')">Isa AS</div>
+                    <div class="sidebar-item" onclick="loadContent('all-prophets')">All Prophets</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" onclick="toggleSection('etiquettes')">Islamic Etiquettes</div>
+                <div class="sidebar-items" id="etiquettes">
+                    <div class="sidebar-item" onclick="loadContent('etiquette-quran')">With the Quran</div>
+                    <div class="sidebar-item" onclick="loadContent('etiquette-parents')">With Parents</div>
+                    <div class="sidebar-item" onclick="loadContent('etiquette-eating')">While Eating</div>
+                    <div class="sidebar-item" onclick="loadContent('etiquette-general')">General Manners</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title" onclick="toggleSection('family')">Family in Islam</div>
+                <div class="sidebar-items" id="family">
+                    <div class="sidebar-item" onclick="loadContent('marriage')">Marriage</div>
+                    <div class="sidebar-item" onclick="loadContent('parenting')">Parenting</div>
+                    <div class="sidebar-item" onclick="loadContent('family-rights')">Rights & Duties</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content" id="mainContent">
+            <div class="content-header">
+                <h1>Welcome to Islamic Knowledge Hub</h1>
+                <div class="breadcrumb">Home</div>
+            </div>
+            <div class="content-body">
+                <p style="font-size: 1.2rem; color: #667eea; font-weight: 500; margin-bottom: 2rem;">
+                    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                </p>
+                
+                <p>Welcome to the Islamic Knowledge Hub - your comprehensive resource for learning about Islam. This platform provides authentic Islamic knowledge covering various aspects of the religion, from fundamental beliefs to practical guidance.</p>
+
+                <div class="quote-box">
+                    "Seeking knowledge is an obligation upon every Muslim." - Prophet Muhammad ﷺ
+                </div>
+
+                <h2>Explore Topics</h2>
+                
+                <div class="home-grid">
+                    <div class="home-card" onclick="loadContent('aqeedah-intro')">
+                        <h3>Aqeedah</h3>
+                        <p>Learn about Islamic creed, Tawheed (monotheism), Iman (faith), and the fundamentals of belief.</p>
+                    </div>
+
+                    <div class="home-card" onclick="loadSection('quran')">
+                        <h3>The Noble Quran</h3>
+                        <p>Explore the revelation, compilation, themes, and miraculous nature of Allah's final message.</p>
+                    </div>
+
+                    <div class="home-card" onclick="loadSection('hadith')">
+                        <h3>Hadith Sciences</h3>
+                        <p>Understand the Sunnah of the Prophet ﷺ and the science of Hadith authentication.</p>
+                    </div>
+
+                    <div class="home-card" onclick="loadContent('seerah-intro')">
+                        <h3>Prophet's Biography</h3>
+                        <p>Follow the life journey of Prophet Muhammad ﷺ from birth to his final days.</p>
+                    </div>
+
+                    <div class="home-card" onclick="loadContent('prophets-intro')">
+                        <h3>Stories of Prophets</h3>
+                        <p>Learn about the messengers of Allah sent to guide humanity throughout history.</p>
+                    </div>
+
+                    <div class="home-card" onclick="loadContent('personalities-intro')">
+                        <h3>Islamic Personalities</h3>
+                        <p>Discover the lives of the Companions, scholars, and influential figures in Islamic history.</p>
+                    </div>
+
+                    <div class="home-card" onclick="loadContent('history-intro')">
+                        <h3>Islamic History</h3>
+                        <p>Journey through the Islamic Golden Age, caliphates, and civilization contributions.</p>
+                    </div>
+
+                    <div class="home-card" onclick="loadContent('etiquettes-intro')">
+                        <h3>Islamic Etiquettes</h3>
+                        <p>Learn the proper manners and etiquettes taught by Islam for daily life.</p>
+                    </div>
+
+                    <div class="home-card" onclick="loadContent('family-intro')">
+                        <h3>Family in Islam</h3>
+                        <p>Understand marriage, parenting, and family relationships in Islamic teachings.</p>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 3rem;">How to Use This Site</h2>
+                <ul>
+                    <li>Use the sidebar navigation to browse topics by category</li>
+                    <li>Click on the top navigation links for quick access to Quran, Hadith, and Blog sections</li>
+                    <li>Use the search box to find specific topics</li>
+                    <li>Each topic provides detailed authentic information based on Islamic sources</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Toggle sidebar sections
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const title = event.target;
+            
+            section.classList.toggle('hidden');
+            title.classList.toggle('collapsed');
+        }
+
+        // Search functionality
+        function searchTopics() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const items = document.querySelectorAll('.sidebar-item, .sidebar-subitem');
+            
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = searchTerm ? 'none' : 'block';
+                }
+            });
+        }
+
+        // Content database
+        const contentDatabase = {
+            'tawheed': {
+                title: 'Tawheed - The Oneness of Allah',
+                breadcrumb: 'Aqeedah > Tawheed',
+                content: `
+                    <p><strong>Tawheed</strong> is the fundamental concept of Islamic monotheism - the absolute oneness and uniqueness of Allah. It is the foundation upon which Islam is built and the first pillar of faith.</p>
+
+                    <h2>Definition of Tawheed</h2>
+                    <p>Tawheed means to believe that Allah alone is the One deserving of worship, without any partners, equals, or rivals. It encompasses believing in His perfect attributes, His complete control over creation, and His exclusive right to be worshipped.</p>
+
+                    <div class="quote-box">
+                        "Say: He is Allah, the One. Allah, the Eternal Refuge. He neither begets nor is born, nor is there to Him any equivalent." - Surah Al-Ikhlas (112:1-4)
+                    </div>
+
+                    <h2>The Three Categories of Tawheed</h2>
+                    
+                    <h3>1. Tawheed ar-Ruboobiyah (Oneness of Lordship)</h3>
+                    <p>This refers to singling out Allah in His actions as the Creator, Sustainer, Provider, and Controller of all affairs. It means believing that Allah alone creates, provides, gives life and death, and manages the universe.</p>
+
+                    <h3>2. Tawheed al-Asma was-Sifaat (Oneness of Names and Attributes)</h3>
+                    <p>This means affirming for Allah what He has affirmed for Himself in His Book and through His Messenger, of beautiful Names and perfect Attributes, without distortion, denial, asking how, or likening them to creation.</p>
+
+                    <h3>3. Tawheed al-Uloohiyah (Oneness of Worship)</h3>
+                    <p>This is the most important category, referring to singling out Allah alone in all acts of worship. All prayers, supplications, hopes, fears, trust, love, and devotion must be directed to Allah alone.</p>
+
+                    <h2>The Importance of Tawheed</h2>
+                    <ul>
+                        <li>It is the purpose for which Allah created mankind and jinn</li>
+                        <li>It is the first message brought by all prophets and messengers</li>
+                        <li>It is the condition for acceptance of good deeds</li>
+                        <li>It is the key to Paradise and protection from Hellfire</li>
+                        <li>It brings peace, tranquility, and purpose to life</li>
+                    </ul>
+
+                    <h2>The Declaration of Tawheed</h2>
+                    <p class="arabic-text">لَا إِلَٰهَ إِلَّا ٱللَّٰهُ مُحَمَّدٌ رَسُولُ ٱللَّٰهِ</p>
+                    <p><em>"There is no deity worthy of worship except Allah, and Muhammad is the Messenger of Allah."</em></p>
+
+                    <p>This testimony (Shahadah) is the foundation of Islamic faith. It negates all false objects of worship and affirms that Allah alone deserves all worship.</p>
+                `
+            },
+            'iman': {
+                title: 'Iman - The Pillars of Faith',
+                breadcrumb: 'Aqeedah > Iman',
+                content: `
+                    <p><strong>Iman</strong> (faith) is belief with certainty in the heart, confession with the tongue, and action with the limbs. It increases with obedience and decreases with disobedience.</p>
+
+                    <h2>The Six Pillars of Iman</h2>
+                    <p>The Prophet Muhammad ﷺ defined Iman when asked by Angel Jibreel:</p>
+
+                    <div class="quote-box">
+                        "Iman is to believe in Allah, His Angels, His Books, His Messengers, the Last Day, and to believe in Divine Decree (Qadar), both the good and bad of it." - Sahih Muslim
+                    </div>
+
+                    <h3>1. Belief in Allah</h3>
+                    <p>This is the foundation of Iman. It means believing in:</p>
+                    <ul>
+                        <li>Allah's existence</li>
+                        <li>His Lordship (Ruboobiyah)</li>
+                        <li>His right to be worshipped alone (Uloohiyah)</li>
+                        <li>His perfect Names and Attributes</li>
+                    </ul>
+
+                    <h3>2. Belief in the Angels</h3>
+                    <p>Angels are creatures of light created by Allah to worship Him and carry out His commands. They do not disobey Allah and do exactly as they are commanded. Notable angels include Jibreel (revelation), Mikael (sustenance), Israfeel (the trumpet), and the Angel of Death.</p>
+
+                    <h3>3. Belief in the Books</h3>
+                    <p>Muslims believe in all scriptures revealed by Allah, including:</p>
+                    <ul>
+                        <li>The Suhuf (Scrolls) given to Ibrahim</li>
+                        <li>The Tawrah (Torah) given to Musa</li>
+                        <li>The Zabur (Psalms) given to Dawud</li>
+                        <li>The Injeel (Gospel) given to Isa</li>
+                        <li>The Quran, the final revelation given to Muhammad ﷺ</li>
+                    </ul>
+
+                    <h3>4. Belief in the Messengers</h3>
+                    <p>Muslims believe in all prophets and messengers sent by Allah. We must believe in all of them without distinction, though some are mentioned specifically in the Quran. The final messenger is Prophet Muhammad ﷺ.</p>
+
+                    <h3>5. Belief in the Last Day</h3>
+                    <p>This includes belief in:</p>
+                    <ul>
+                        <li>Death and the questioning in the grave</li>
+                        <li>The resurrection of all creation</li>
+                        <li>The Day of Judgment</li>
+                        <li>Paradise (Jannah) and Hellfire (Jahannam)</li>
+                        <li>The Bridge (Sirat), the Scale (Mizan), and the Intercession</li>
+                    </ul>
+
+                    <h3>6. Belief in Divine Decree (Qadar)</h3>
+                    <p>This means believing that Allah has decreed everything that happens in His creation. It includes four levels:</p>
+                    <ul>
+                        <li>Knowledge: Allah's eternal knowledge of all things</li>
+                        <li>Writing: Everything is written in Al-Lawh Al-Mahfuz (Preserved Tablet)</li>
+                        <li>Will: Nothing occurs except by Allah's will</li>
+                        <li>Creation: Allah is the Creator of all actions and things</li>
+                    </ul>
+
+                    <h2>The Relationship Between Iman and Actions</h2>
+                    <p>According to Ahlus-Sunnah wal-Jama'ah (the orthodox Muslims), Iman consists of:</p>
+                    <ul>
+                        <li>Belief in the heart</li>
+                        <li>Statement of the tongue</li>
+                        <li>Actions of the limbs</li>
+                    </ul>
+                    <p>Iman increases with obedience and good deeds, and decreases with disobedience and sins.</p>
+                `
+            },
+            'quran-revelation': {
+                title: 'The Quran - Divine Revelation',
+                breadcrumb: 'Quran > Divine Revelation',
+                content: `
+                    <h2>The Noble Quran: Allah's Final Message</h2>
+                    <p>The Quran is the literal word of Allah, revealed to Prophet Muhammad ﷺ through Angel Jibreel over a period of 23 years. It is the final revelation from Allah to humanity, preserved in its original form without any alteration.</p>
+
+                    <div class="quote-box">
+                        "Indeed, We have sent down the Reminder (Quran), and indeed, We will be its Guardian." - Surah Al-Hijr (15:9)
+                    </div>
+
+                    <h3>The First Revelation</h3>
+                    <p>The first revelation came to Prophet Muhammad ﷺ at the age of 40, while he was meditating in the Cave of Hira during Ramadan. Angel Jibreel appeared and commanded him to read:</p>
+
+                    <p class="arabic-text">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</p>
+                    <p><em>"Read in the name of your Lord who created..." (Surah Al-Alaq, 96:1)</em></p>
+
+                    <h3>Revelation Over 23 Years</h3>
+                    <p>The Quran was revealed gradually over approximately 23 years (13 years in Makkah and 10 years in Madinah). This gradual revelation had several wisdoms:</p>
+                    <ul>
+                        <li>To strengthen the heart of the Prophet ﷺ</li>
+                        <li>To make it easier to memorize and understand</li>
+                        <li>To address specific situations and questions as they arose</li>
+                        <li>To establish laws gradually for easier implementation</li>
+                    </ul>
+
+                    <h3>Methods of Revelation</h3>
+                    <p>The Quran was revealed to the Prophet ﷺ in various ways:</p>
+                    <ul>
+                        <li>Through Angel Jibreel in his true form</li>
+                        <li>Through Angel Jibreel in human form</li>
+                        <li>Like the ringing of a bell (most difficult)</li>
+                        <li>Direct communication from Allah (on rare occasions)</li>
+                    </ul>
+
+                    <h3>Preservation of the Quran</h3>
+                    <p>Unlike previous scriptures, the Quran has been perfectly preserved since its revelation:</p>
+                    <ul>
+                        <li>Memorized by thousands of companions during the Prophet's lifetime</li>
+                        <li>Written down by scribes as it was revealed</li>
+                        <li>Compiled into a single book during Abu Bakr's caliphate</li>
+                        <li>Standardized copies distributed during Uthman's caliphate</li>
+                        <li>Continuously memorized by Muslims in every generation</li>
+                    </ul>
+
+                    <h3>Unique Characteristics of the Quran</h3>
+                    <ul>
+                        <li><strong>Linguistic Miracle:</strong> Its unmatched eloquence and literary excellence</li>
+                        <li><strong>Scientific Accuracy:</strong> Contains facts about nature discovered centuries later</li>
+                        <li><strong>Perfect Preservation:</strong> Not a single letter has changed in 1400+ years</li>
+                        <li><strong>Universal Guidance:</strong> Addresses all of humanity for all times</li>
+                        <li><strong>Internal Consistency:</strong> No contradictions despite being revealed over 23 years</li>
+                    </ul>
+                `
+            },
+            'sunnah-hadith': {
+                title: 'Sunnah and Hadith',
+                breadcrumb: 'Hadith > Sunnah & Hadith',
+                content: `
+                    <h2>Understanding Sunnah and Hadith</h2>
+                    
+                    <h3>What is the Sunnah?</h3>
+                    <p>The Sunnah refers to the way of life, teachings, actions, sayings, and approvals of Prophet Muhammad ﷺ. It is the second source of Islamic law after the Quran and provides practical demonstration of how to implement Quranic teachings.</p>
+
+                    <div class="quote-box">
+                        "Indeed in the Messenger of Allah you have an excellent example to follow for whoever hopes in Allah and the Last Day and remembers Allah much." - Surah Al-Ahzab (33:21)
+                    </div>
+
+                    <h3>What is Hadith?</h3>
+                    <p>Hadith (plural: Ahadith) are reports or narrations about the Prophet's ﷺ words, actions, tacit approvals, or descriptions of his character and physical appearance. Each hadith consists of two parts:</p>
+                    <ul>
+                        <li><strong>Isnad (Chain):</strong> The chain of narrators who transmitted the hadith</li>
+                        <li><strong>Matn (Text):</strong> The actual content or text of the hadith</li>
+                    </ul>
+
+                    <h3>Types of Hadith</h3>
+                    <p>Hadith are classified based on their authenticity and chain of transmission:</p>
+
+                    <h4>1. Sahih (Authentic)</h4>
+                    <p>Hadith with a continuous chain of trustworthy narrators, no defects, and no contradictions. These are the most reliable.</p>
+
+                    <h4>2. Hasan (Good)</h4>
+                    <p>Similar to Sahih but with slightly weaker reliability in the chain. Still acceptable for legal rulings.</p>
+
+                    <h4>3. Da'if (Weak)</h4>
+                    <p>Hadith that fail to meet the standards of Sahih or Hasan due to breaks in the chain, unreliable narrators, or other defects.</p>
+
+                    <h4>4. Mawdu' (Fabricated)</h4>
+                    <p>Falsely attributed to the Prophet ﷺ. These are rejected completely.</p>
+
+                    <h3>The Six Major Hadith Collections</h3>
+                    <p>The most authentic and widely accepted collections of hadith are:</p>
+                    <ul>
+                        <li><strong>Sahih Al-Bukhari:</strong> Compiled by Imam Bukhari, considered the most authentic</li>
+                        <li><strong>Sahih Muslim:</strong> Compiled by Imam Muslim, second in authenticity</li>
+                        <li><strong>Sunan Abu Dawood:</strong> Focuses on legal rulings</li>
+                        <li><strong>Jami' at-Tirmidhi:</strong> Includes weak hadith with explanations</li>
+                        <li><strong>Sunan an-Nasa'i:</strong> Known for strict authentication</li>
+                        <li><strong>Sunan Ibn Majah:</strong> Contains some unique narrations</li>
+                    </ul>
+
+                    <h3>The Importance of Sunnah</h3>
+                    <ul>
+                        <li>Explains and clarifies the Quran</li>
+                        <li>Provides detailed guidance on worship and daily life</li>
+                        <li>Establishes legal rulings not explicitly mentioned in the Quran</li>
+                        <li>Demonstrates the practical application of Islamic teachings</li>
+                        <li>Preserves the Prophet's ﷺ exemplary character and conduct</li>
+                    </ul>
+
+                    <h3>Science of Hadith Authentication</h3>
+                    <p>Islamic scholars developed rigorous methods to verify hadith authenticity:</p>
+                    <ul>
+                        <li>Examining the reliability and memory of each narrator</li>
+                        <li>Ensuring continuity in the chain of transmission</li>
+                        <li>Checking for contradictions with established texts</li>
+                        <li>Analyzing the text for linguistic and contextual accuracy</li>
+                        <li>Comparing narrations from multiple sources</li>
+                    </ul>
+                `
+            },
+            'birth-prophet': {
+                title: 'Birth and Early Life of Prophet Muhammad ﷺ',
+                breadcrumb: 'Seerah > Birth & Early Life',
+                content: `
+                    <h2>The Year of the Elephant</h2>
+                    <p>Prophet Muhammad ﷺ was born in the Year of the Elephant (570 CE), so named because of a significant event that occurred that year. Abraha, the Abyssinian ruler of Yemen, marched with an army including elephants to destroy the Kaaba in Makkah. Allah protected His sacred house by sending flocks of birds that pelted the army with stones, destroying them completely.</p>
+
+                    <div class="quote-box">
+                        "Have you not seen how your Lord dealt with the companions of the elephant? Did He not make their plan into misguidance? And He sent against them birds in flocks, striking them with stones of hard clay, and He made them like eaten straw." - Surah Al-Fil (105:1-5)
+                    </div>
+
+                    <h3>Birth in Makkah</h3>
+                    <p>Muhammad ﷺ was born on Monday, the 12th of Rabi' al-Awwal, in the city of Makkah. His birth was accompanied by several miraculous signs reported by his mother Aminah and other witnesses.</p>
+
+                    <h3>Noble Lineage</h3>
+                    <p>The Prophet ﷺ came from the noblest lineage of the Arabs:</p>
+                    <ul>
+                        <li><strong>Father:</strong> Abdullah ibn Abdul-Muttalib (died before his birth)</li>
+                        <li><strong>Mother:</strong> Aminah bint Wahb</li>
+                        <li><strong>Grandfather:</strong> Abdul-Muttalib (leader of Quraysh)</li>
+                        <li><strong>Tribe:</strong> Banu Hashim of the Quraysh</li>
+                        <li><strong>Descendant of:</strong> Prophet Ismail, son of Prophet Ibrahim</li>
+                    </ul>
+
+                    <h3>Early Childhood</h3>
+                    <p>Following the Arabian custom of the time, baby Muhammad was sent to live with a wet nurse in the desert for his early years:</p>
+                    <ul>
+                        <li>Nursed by Halimah As-Sa'diyah of the Banu Sa'd tribe</li>
+                        <li>Spent approximately four years in the desert with his foster family</li>
+                        <li>His foster family experienced numerous blessings during this time</li>
+                    </ul>
+
+                    <h3>The Splitting of the Chest</h3>
+                    <p>When Muhammad ﷺ was about 4-5 years old, while with his foster family, Angel Jibreel came and performed a miraculous operation on his chest, purifying his heart. This prepared him for his future role as the final prophet.</p>
+
+                    <h3>Loss of Parents</h3>
+                    <p>Muhammad ﷺ faced several losses in his early childhood:</p>
+                    <ul>
+                        <li><strong>Age 6:</strong> His mother Aminah passed away during a journey to visit relatives</li>
+                        <li><strong>Age 8:</strong> His grandfather Abdul-Muttalib, who had cared for him, passed away</li>
+                        <li><strong>Thereafter:</strong> He was raised by his uncle Abu Talib</li>
+                    </ul>
+
+                    <h3>Character in Youth</h3>
+                    <p>Even before prophethood, Muhammad ﷺ was known for his exemplary character:</p>
+                    <ul>
+                        <li>Known as "Al-Amin" (the Trustworthy) and "As-Sadiq" (the Truthful)</li>
+                        <li>Never participated in the immoral practices common in Makkan society</li>
+                        <li>Never worshipped idols, even as a child</li>
+                        <li>Known for his honesty, integrity, and compassion</li>
+                        <li>Worked as a shepherd, learning patience and responsibility</li>
+                    </ul>
+
+                    <h3>Working Life</h3>
+                    <p>In his youth, Muhammad ﷺ worked as a trader and merchant:</p>
+                    <ul>
+                        <li>Managed trade caravans for wealthy merchants</li>
+                        <li>Traveled to Syria and other regions for trade</li>
+                        <li>Built a reputation for honesty and fair dealing</li>
+                        <li>Eventually managed trade for Khadijah bint Khuwaylid</li>
+                    </ul>
+
+                    <h3>Marriage to Khadijah</h3>
+                    <p>At age 25, Muhammad ﷺ married Khadijah, who was 40 years old at the time. She was his only wife until her death 25 years later. She was his greatest supporter and the first person to believe in his message when he received prophethood at age 40.</p>
+                `
+            }
+        };
+
+        // Load content function
+        function loadContent(contentId) {
+            const content = contentDatabase[contentId];
+            const mainContent = document.getElementById('mainContent');
+            
+            if (content) {
+                mainContent.innerHTML = `
+                    <div class="content-header">
+                        <h1>${content.title}</h1>
+                        <div class="breadcrumb">${content.breadcrumb}</div>
+                    </div>
+                    <div class="content-body">
+                        ${content.content}
+                    </div>
+                `;
+                
+                // Update active state
+                document.querySelectorAll('.sidebar-item, .sidebar-subitem').forEach(item => {
+                    item.classList.remove('active');
+                });
+                event.target.classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                mainContent.innerHTML = `
+                    <div class="content-header">
+                        <h1>Content Coming Soon</h1>
+                        <div class="breadcrumb">In Development</div>
+                    </div>
+                    <div class="content-body">
+                        <p>This section is currently being developed. Please check back soon for comprehensive content on this topic.</p>
+                        <p>In the meantime, feel free to explore other sections using the sidebar navigation.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load section function for top navigation
+        function loadSection(section) {
+            const mainContent = document.getElementById('mainContent');
+            
+            const sectionContent = {
+                'quran': {
+                    title: 'The Noble Quran',
+                    content: `
+                        <p>The Quran is the literal word of Allah revealed to Prophet Muhammad ﷺ over 23 years. It is the primary source of Islamic guidance and law.</p>
+                        <h2>Quick Access</h2>
+                        <div class="home-grid">
+                            <div class="home-card" onclick="loadContent('quran-revelation')">
+                                <h3>Divine Revelation</h3>
+                                <p>Learn how the Quran was revealed</p>
+                            </div>
+                            <div class="home-card" onclick="loadContent('quran-names')">
+                                <h3>Names of the Quran</h3>
+                                <p>The various names and their meanings</p>
+                            </div>
+                            <div class="home-card" onclick="loadContent('quran-collection')">
+                                <h3>Collection & Preservation</h3>
+                                <p>How the Quran was compiled and preserved</p>
+                            </div>
+                            <div class="home-card" onclick="loadContent('quran-themes')">
+                                <h3>Major Themes</h3>
+                                <p>Core themes and subjects in the Quran</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'hadith': {
+                    title: 'Hadith Sciences',
+                    content: `
+                        <p>Hadith are the recorded sayings, actions, and approvals of Prophet Muhammad ﷺ. They provide detailed guidance on implementing Islamic teachings.</p>
+                        <h2>Quick Access</h2>
+                        <div class="home-grid">
+                            <div class="home-card" onclick="loadContent('sunnah-hadith')">
+                                <h3>Sunnah & Hadith</h3>
+                                <p>Understanding the prophetic tradition</p>
+                            </div>
+                            <div class="home-card" onclick="loadContent('hadith-collection')">
+                                <h3>Major Collections</h3>
+                                <p>The six authentic hadith books</p>
+                            </div>
+                            <div class="home-card" onclick="loadContent('hadith-categories')">
+                                <h3>Categories of Hadith</h3>
+                                <p>Sahih, Hasan, Da'if classifications</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'glossary': {
+                    title: 'Islamic Glossary',
+                    content: `
+                        <p>A comprehensive glossary of Islamic terms and concepts.</p>
+                        <h2>Common Terms</h2>
+                        <ul>
+                            <li><strong>Allah:</strong> The Arabic name for God, the One and Only deity worthy of worship</li>
+                            <li><strong>Iman:</strong> Faith and belief in the fundamentals of Islam</li>
+                            <li><strong>Islam:</strong> Submission to the will of Allah; peace</li>
+                            <li><strong>Muslim:</strong> One who submits to Allah and follows Islamic teachings</li>
+                            <li><strong>Quran:</strong> The final revelation from Allah to humanity</li>
+                            <li><strong>Hadith:</strong> Recorded sayings and actions of Prophet Muhammad ﷺ</li>
+                            <li><strong>Sunnah:</strong> The way of the Prophet Muhammad ﷺ</li>
+                            <li><strong>Salah:</strong> The five daily prayers</li>
+                            <li><strong>Zakah:</strong> Obligatory charity given to the needy</li>
+                            <li><strong>Sawm:</strong> Fasting during the month of Ramadan</li>
+                            <li><strong>Hajj:</strong> Pilgrimage to Makkah</li>
+                        </ul>
+                    `
+                },
+                'blog': {
+                    title: 'Islamic Blog & Articles',
+                    content: `
+                        <p>Explore various topics and contemporary issues from an Islamic perspective.</p>
+                        <h2>Recent Articles</h2>
+                        <div class="home-grid">
+                            <div class="home-card">
+                                <h3>The Importance of Time in Islam</h3>
+                                <p>Understanding the value Allah places on time and how Muslims should utilize it</p>
+                            </div>
+                            <div class="home-card">
+                                <h3>Islamic Etiquettes in Daily Life</h3>
+                                <p>Practical guidance on maintaining Islamic manners throughout the day</p>
+                            </div>
+                            <div class="home-card">
+                                <h3>The Prophetic Diet</h3>
+                                <p>Healthy eating habits from the Sunnah of Prophet Muhammad ﷺ</p>
+                            </div>
+                            <div class="home-card">
+                                <h3>Islamic Finance Principles</h3>
+                                <p>Understanding halal ways of earning and managing wealth</p>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+            
+            const content = sectionContent[section];
+            mainContent.innerHTML = `
+                <div class="content-header">
+                    <h1>${content.title}</h1>
+                    <div class="breadcrumb">Home > ${content.title}</div>
+                </div>
+                <div class="content-body">
+                    ${content.content}
+                </div>
+            `;
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize - collapse all sections except first
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.sidebar-items');
+            sections.forEach((section, index) => {
+                if (index > 0) {
+                    section.classList.add('hidden');
+                    section.previousElementSibling.classList.add('collapsed');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
