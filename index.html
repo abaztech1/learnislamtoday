@@ -323,6 +323,22 @@
                 padding: 1.5rem;
             }
         }
+        /* Personalities 3-level sidebar styling */
+        .sidebar-item.sidebar-group {
+            font-weight: 600;
+            position: relative;
+            padding-right: 1.2rem;
+        }
+        .sidebar-item.sidebar-group::after {
+            content: "›";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -412,14 +428,88 @@
                 </div>
             </div>
 
-            <div class="sidebar-section">
+            <!-- <div class="sidebar-section">
                 <div class="sidebar-title" onclick="toggleSection('personalities')">Personalities</div>
                 <div class="sidebar-items" id="personalities">
                     <div class="sidebar-item" onclick="loadContent('sahabah')">Companions (Sahabah)</div>
                     <div class="sidebar-item" onclick="loadContent('sahabiyat')">Female Companions</div>
                     <div class="sidebar-item" onclick="loadContent('imams')">Great Imams</div>
                 </div>
-            </div>
+            </div> -->
+<div class="sidebar-section">
+    <div class="sidebar-title" onclick="toggleSection('personalities')">Personalities</div>
+    <div class="sidebar-items" id="personalities">
+
+        <!-- Sahabah -->
+        <div class="sidebar-item sidebar-group" onclick="toggleSection('sahabah-list')">
+            Sahabah
+        </div>
+        <div class="sidebar-items hidden" id="sahabah-list">
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-abu-bakr')">• Abu Bakr RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-umar')">• Umar RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-uthman')">• Uthman RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-ali')">• Ali RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-talha')">• Talha ibn Ubaydullah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-zubayr')">• Az-Zubayr ibn al-Awwaam RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-abdurrahman')">• Abdur-Rahmaan ibn Awf RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-saad')">• Sa'd ibn Abee Waqqas RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-saeed')">• Saeed ibn Zayd RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-abu-ubaydah')">• Abu Ubaydah ibn al-Jarraah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-hasan')">• Hasan RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-husayn')">• Husayn RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-abu-moosa')">• Abu Moosaa al-Ash'aree RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-muadh')">• Mu'aadh ibn Jabal RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-abu-hurayrah')">• Abu Hurayrah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-salman')">• Salmaan al-Farisee RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-thabit')">• Thaabit ibn Qays al-Ansaaree RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-abu-dharr')">• Abu Dharr al-Ghifaaree RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabah-bilal')">• Bilal ibn Rabaah RA</div>
+        </div>
+
+        <!-- Sahabiyat -->
+        <div class="sidebar-item sidebar-group" onclick="toggleSection('sahabiyat-list')">
+            Sahabiyat
+        </div>
+        <div class="sidebar-items hidden" id="sahabiyat-list">
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-khadijah')">• Khadeejah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-sawdah')">• Sawdah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-aisha')">• Ayesha RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-hafsa')">• Hafsa RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-zaynab-khuzaymah')">• Zaynab bint Khuzaymah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-umm-salamah')">• Umm Salamah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-zaynab-jahsh')">• Zaynab bint Jahsh RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-juwayriyah')">• Juwwayriyah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-umm-habibah')">• Umm Habeebah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-safiyyah')">• Safiyyah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-maymoonah')">• Maymoonah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-zaynab-muhammad')">• Zaynab bint Muhammad RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-ruqayyah')">• Ruqayyah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-umm-kulthoom')">• Umm Kulthoom RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-fatimah')">• Faatimah RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-umm-sulaym')">• Umm Sulaym RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-safiyyah-bint-abd')">• Safiyyah bint Abd al-Muttalib RA</div>
+            <div class="sidebar-subitem" onclick="loadContent('sahabiyat-umm-ayman')">• Umm Ayman RA</div>
+        </div>
+
+        <!-- Imams -->
+        <div class="sidebar-item sidebar-group" onclick="toggleSection('imams-list')">
+            Imams
+        </div>
+        <div class="sidebar-items hidden" id="imams-list">
+            <div class="sidebar-subitem" onclick="loadContent('imam-abu-haneefa')">• Imam Abu Haneefa</div>
+            <div class="sidebar-subitem" onclick="loadContent('imam-malik')">• Imam Malik</div>
+            <div class="sidebar-subitem" onclick="loadContent('imam-shafii')">• Imam Shafii</div>
+            <div class="sidebar-subitem" onclick="loadContent('imam-ahmad')">• Imam Ahmad ibn Hanbal</div>
+            <div class="sidebar-subitem" onclick="loadContent('imam-bukhari')">• Imam Bukhari</div>
+            <div class="sidebar-subitem" onclick="loadContent('imam-muslim')">• Imam Muslim</div>
+            <div class="sidebar-subitem" onclick="loadContent('imam-abu-dawood')">• Imam Abu Dawood</div>
+            <div class="sidebar-subitem" onclick="loadContent('imam-tirmidhi')">• Imam Tirmidhi</div>
+            <div class="sidebar-subitem" onclick="loadContent('imam-nasaee')">• Imam Nasaee</div>
+            <div class="sidebar-subitem" onclick="loadContent('imam-ibn-majah')">• Imam Ibn Majah</div>
+        </div>
+
+    </div>
+</div>
 
             <div class="sidebar-section">
                 <div class="sidebar-title" onclick="toggleSection('history')">History</div>
