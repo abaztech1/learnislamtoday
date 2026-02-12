@@ -54,9 +54,18 @@
             gap: 0.5rem;
         }
 
-        .site-title::before {
+        /* .site-title::before {
             content: "☪";
             font-size: 2rem;
+        } */
+        .site-logo{
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            display: block;
+        }
+        .site-title{
+            cursor: pointer;
         }
 
         .top-nav-links {
@@ -360,8 +369,16 @@
     <!-- Top Navigation -->
     <nav class="top-nav">
         <div class="top-nav-content">
-            <div class="site-title">Islamic Knowledge Hub</div>
+            <!-- <div class="site-title">Islamic GK</div> -->
+
+            <div class="site-title" onclick="loadHome(); return false;">
+                <img src="logo.png" alt="Islamic GK Logo" class="site-logo">
+                <span>Islamic GK</span>
+            </div>
+
             <div class="top-nav-links">
+                <!-- <a href="#" onclick="loadSection('home'); return false;">Home</a> -->
+                <a href="#" onclick="loadHome(); return false;">Home</a>
                 <a href="#" onclick="loadSection('quran'); return false;">Quran</a>
                 <a href="#" onclick="loadSection('hadith'); return false;">Hadith</a>
                 <a href="#" onclick="loadSection('glossary'); return false;">Glossary</a>
@@ -377,7 +394,11 @@
             <input type="text" class="search-box" placeholder="Search topics..." id="searchBox" onkeyup="searchTopics()">
             
             <div class="sidebar-section">
-                <div class="sidebar-title" onclick="toggleSection('aqeedah')">Aqeedah (Creed)</div>
+                <!-- <div class="sidebar-title" onclick="toggleSection('aqeedah')">Aqeedah (Creed)</div> -->
+                <div class="sidebar-title" onclick="toggleSection('aqeedah', this); loadContent('aqeedah-intro', this);">
+                  Aqeedah (Creed)
+                </div>
+
                 <div class="sidebar-items" id="aqeedah">
                     <div class="sidebar-item" onclick="loadContent('tawheed')">Tawheed</div>
                     <div class="sidebar-subitem" onclick="loadContent('tawheed-ruboobeeyah')">• Tawheed ar-Ruboobeeyah</div>
@@ -569,7 +590,7 @@
         <!-- Main Content -->
         <main class="content" id="mainContent">
             <div class="content-header">
-                <h1>Welcome to Islamic Knowledge Hub</h1>
+                <h1>Welcome to Islamic GK</h1>
                 <div class="breadcrumb">Home</div>
             </div>
             <div class="content-body">
@@ -577,7 +598,7 @@
                     بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                 </p>
                 
-                <p>Welcome to the Islamic Knowledge Hub - your comprehensive resource for learning about Islam. This platform provides authentic Islamic knowledge covering various aspects of the religion, from fundamental beliefs to practical guidance.</p>
+                <p>Welcome to the Islamic GK - your comprehensive resource for learning about Islam. This platform provides authentic Islamic knowledge covering various aspects of the religion, from fundamental beliefs to practical guidance.</p>
 
                 <div class="quote-box">
                     "Seeking knowledge is an obligation upon every Muslim." - Prophet Muhammad ﷺ
@@ -645,12 +666,20 @@
 
     <script>
         // Toggle sidebar sections
-        function toggleSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            const title = event.target;
+        // function toggleSection(sectionId) {
+        //     const section = document.getElementById(sectionId);
+        //     const title = event.target;
             
+        //     section.classList.toggle('hidden');
+        //     title.classList.toggle('collapsed');
+        // }
+
+        function toggleSection(sectionId, titleEl) {
+            const section = document.getElementById(sectionId);
+            const title = titleEl || (typeof event !== "undefined" ? event.target : null);
+        
             section.classList.toggle('hidden');
-            title.classList.toggle('collapsed');
+            if (title) title.classList.toggle('collapsed');
         }
 
         // Search functionality
@@ -2867,10 +2896,47 @@
         };
 
         // Load content function
-        function loadContent(contentId) {
+        // function loadContent(contentId) {
+        //     const content = contentDatabase[contentId];
+        //     const mainContent = document.getElementById('mainContent');
+            
+        //     if (content) {
+        //         mainContent.innerHTML = `
+        //             <div class="content-header">
+        //                 <h1>${content.title}</h1>
+        //                 <div class="breadcrumb">${content.breadcrumb}</div>
+        //             </div>
+        //             <div class="content-body">
+        //                 ${content.content}
+        //             </div>
+        //         `;
+                
+        //         // Update active state
+        //         document.querySelectorAll('.sidebar-item, .sidebar-subitem').forEach(item => {
+        //             item.classList.remove('active');
+        //         });
+        //         event.target.classList.add('active');
+                
+        //         // Scroll to top
+        //         window.scrollTo({ top: 0, behavior: 'smooth' });
+        //     } else {
+        //         mainContent.innerHTML = `
+        //             <div class="content-header">
+        //                 <h1>Content Coming Soon</h1>
+        //                 <div class="breadcrumb">In Development</div>
+        //             </div>
+        //             <div class="content-body">
+        //                 <p>This section is currently being developed. Please check back soon for comprehensive content on this topic.</p>
+        //                 <p>In the meantime, feel free to explore other sections using the sidebar navigation.</p>
+        //             </div>
+        //         `;
+        //     }
+        // }
+
+        function loadContent(contentId, clickedEl) {
             const content = contentDatabase[contentId];
             const mainContent = document.getElementById('mainContent');
-            
+        
             if (content) {
                 mainContent.innerHTML = `
                     <div class="content-header">
@@ -2881,14 +2947,17 @@
                         ${content.content}
                     </div>
                 `;
-                
-                // Update active state
+        
+                // Update active state ONLY for sidebar items/subitems
                 document.querySelectorAll('.sidebar-item, .sidebar-subitem').forEach(item => {
                     item.classList.remove('active');
                 });
-                event.target.classList.add('active');
-                
-                // Scroll to top
+        
+                const el = clickedEl || (typeof event !== "undefined" ? event.target : null);
+                if (el && (el.classList.contains('sidebar-item') || el.classList.contains('sidebar-subitem'))) {
+                    el.classList.add('active');
+                }
+        
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 mainContent.innerHTML = `
@@ -2904,6 +2973,84 @@
             }
         }
 
+        function loadHome() {
+    const mainContent = document.getElementById('mainContent');
+
+    mainContent.innerHTML = `
+        <div class="content-header">
+            <h1>Welcome to Islamic GK</h1>
+            <div class="breadcrumb">Home</div>
+        </div>
+        <div class="content-body">
+            <p style="font-size: 1.2rem; color: #667eea; font-weight: 500; margin-bottom: 2rem;">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </p>
+            
+            <p>Welcome to the Islamic GK - your comprehensive resource for learning about Islam. This platform provides authentic Islamic knowledge covering various aspects of the religion, from fundamental beliefs to practical guidance.</p>
+            <div class="quote-box">
+                "Seeking knowledge is an obligation upon every Muslim." - Prophet Muhammad ﷺ
+            </div>
+            <h2>Explore Topics</h2>
+            
+            <div class="home-grid">
+                <div class="home-card" onclick="loadContent('aqeedah-intro')">
+                    <h3>Aqeedah</h3>
+                    <p>Learn about Islamic creed, Tawheed (monotheism), Iman (faith), and the fundamentals of belief.</p>
+                </div>
+                <div class="home-card" onclick="loadSection('quran')">
+                    <h3>The Noble Quran</h3>
+                    <p>Explore the revelation, compilation, themes, and miraculous nature of Allah's final message.</p>
+                </div>
+                <div class="home-card" onclick="loadSection('hadith')">
+                    <h3>Hadith Sciences</h3>
+                    <p>Understand the Sunnah of the Prophet ﷺ and the science of Hadith authentication.</p>
+                </div>
+                <div class="home-card" onclick="loadContent('seerah-intro')">
+                    <h3>Prophet's Biography</h3>
+                    <p>Follow the life journey of Prophet Muhammad ﷺ from birth to his final days.</p>
+                </div>
+                <div class="home-card" onclick="loadContent('prophets-intro')">
+                    <h3>Stories of Prophets</h3>
+                    <p>Learn about the messengers of Allah sent to guide humanity throughout history.</p>
+                </div>
+                <div class="home-card" onclick="loadContent('personalities-intro')">
+                    <h3>Islamic Personalities</h3>
+                    <p>Discover the lives of the Companions, scholars, and influential figures in Islamic history.</p>
+                </div>
+                <div class="home-card" onclick="loadContent('history-intro')">
+                    <h3>Islamic History</h3>
+                    <p>Journey through the Islamic Golden Age, caliphates, and civilization contributions.</p>
+                </div>
+                <div class="home-card" onclick="loadContent('etiquettes-intro')">
+                    <h3>Islamic Etiquettes</h3>
+                    <p>Learn the proper manners and etiquettes taught by Islam for daily life.</p>
+                </div>
+                <div class="home-card" onclick="loadContent('family-intro')">
+                    <h3>Family in Islam</h3>
+                    <p>Understand marriage, parenting, and family relationships in Islamic teachings.</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3rem;">How to Use This Site</h2>
+            <ul>
+                <li>Use the sidebar navigation to browse topics by category</li>
+                <li>Click on the top navigation links for quick access to Quran, Hadith, and Blog sections</li>
+                <li>Use the search box to find specific topics</li>
+                <li>Each topic provides detailed authentic information based on Islamic sources</li>
+            </ul>
+        </div>
+    `;
+
+    // Optional: clear sidebar active highlight when going Home
+    document.querySelectorAll('.sidebar-item, .sidebar-subitem').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+        
         // Load section function for top navigation
         function loadSection(section) {
             const mainContent = document.getElementById('mainContent');
@@ -3025,6 +3172,7 @@
                     section.previousElementSibling.classList.add('collapsed');
                 }
             });
+            loadHome();
         });
     </script>
 </body>
