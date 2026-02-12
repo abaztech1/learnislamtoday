@@ -433,7 +433,10 @@
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-title" onclick="toggleSection('quran-sect')">Quran</div>
+                <!-- <div class="sidebar-title" onclick="toggleSection('quran-sect')">Quran</div> -->
+                <div class="sidebar-title" onclick="toggleSection('quran-sect', this); loadContent('quran', this);">
+                  Quran
+                </div>
                 <div class="sidebar-items" id="quran-sect">
                     <div class="sidebar-item" onclick="loadContent('quran-revelation')">Divine Revelation</div>
                     <div class="sidebar-item" onclick="loadContent('quran-names')">Names of the Quran</div>
@@ -2892,7 +2895,31 @@
         </p>
     `
 },
-
+'quran': {
+                    title: 'The Noble Quran',
+                    content: `
+                        <p>The Quran is the literal word of Allah revealed to Prophet Muhammad ﷺ over 23 years. It is the primary source of Islamic guidance and law.</p>
+                        <h2>Quick Access</h2>
+                        <div class="home-grid">
+                            <div class="home-card" onclick="loadContent('quran-revelation')">
+                                <h3>Divine Revelation</h3>
+                                <p>Learn how the Quran was revealed</p>
+                            </div>
+                            <div class="home-card" onclick="loadContent('quran-names')">
+                                <h3>Names of the Quran</h3>
+                                <p>The various names and their meanings</p>
+                            </div>
+                            <div class="home-card" onclick="loadContent('quran-collection')">
+                                <h3>Collection & Preservation</h3>
+                                <p>How the Quran was compiled and preserved</p>
+                            </div>
+                            <div class="home-card" onclick="loadContent('quran-themes')">
+                                <h3>Major Themes</h3>
+                                <p>Core themes and subjects in the Quran</p>
+                            </div>
+                        </div>
+                    `
+                },
         };
 
         // Load content function
